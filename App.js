@@ -18,9 +18,8 @@ export default function App() {
       const result = await axios.post(url, params);
       // myLink.value = result?.data
       setmyShort(result?.data?.shortUrl)
-      console.log('result', result)
     }catch(err){
-      console.log(err)
+      throw err
     }
   }
 

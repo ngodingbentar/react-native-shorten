@@ -29,6 +29,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "Url Shortener by Ngodingbentar",
+    "githubUrl": "https://github.com/ngodingbentar/react-native-shorten"
   }
 }

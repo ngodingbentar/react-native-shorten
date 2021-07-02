@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput  } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Clipboard  } from 'react-native';
 import axios from 'axios';
 
 export default function App() {
@@ -29,32 +29,39 @@ export default function App() {
   }
 
   async function copy(){
-    try {
-      navigator.clipboard.writeText(myShort)
+      // navigator.clipboard.writeText(myShort)
+      Clipboard.setString(myShort)
       triggerToast()
-    } catch (e){
-      throw e
-    }
   }
 
   return (
     <View style={styles.container}>
       {showToast && (
-        <p>Berhasil copy</p>
+        <Text>Berhasil copy</Text>
       )}
       <Text>Url Shortener</Text>
       <TextInput
         style={styles.input}
         onChangeText={setmyInput}
         value={myInput}
+        placeholder="Input Link"
       />
-      <button onClick={() => dew()}>shorten</button>
-      <br/>
-      <a href={myShort} target="_blank">{myShort}</a>\
-      <br/>
-      {myShort && (
-        <button onClick={() => copy()}>copy</button>
-      )}
+      {/* <Button onClick={() => dew()}>shorten</Button> */}
+      <Button
+        title="shorten"
+        onPress={() => dew()}
+      />
+      {/* <br/> */}
+      <Text style={styles.short}>link : {myShort}</Text>
+      {/* <br/> */}
+      <Text>
+        {myShort && (
+          <Button
+            title="copy"
+            onPress={() => copy()}
+          />
+        )}
+      </Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -71,5 +78,10 @@ const styles = StyleSheet.create({
     height: 40,
     margin: 12,
     borderWidth: 1,
+    minWidth: 200,
   },
+  short: {
+    marginTop:10,
+    marginBottom: 10,
+  }
 });
